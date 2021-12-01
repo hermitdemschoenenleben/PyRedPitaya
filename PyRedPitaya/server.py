@@ -58,11 +58,11 @@ class RedPitayaDeployedServer(_DeployedServer):
         copy(pyredpitaya_root/'PyRedPitaya', tmp / 'PyRedPitaya')
 
     def load_hdl(self, bitfile):
-        print bitfile
+        print(bitfile)
         name = os.path.basename(bitfile)
         copy(local.path(bitfile), self.remote_machine.path('/tmp')/ name)
         load = ( self.remote_machine['/bin/cat']['/tmp/{name}'.format(name=name)] > '/dev/xdevcfg')
-        print load
+        print(load)
         self.remote_machine.popen(str(load)).wait()
 
 
